@@ -9,7 +9,6 @@ import timber.log.Timber
 class MainApplication : Application() {
   override fun onCreate() {
     super.onCreate()
-    Log.d("test","sadasd")
 
   }
 }

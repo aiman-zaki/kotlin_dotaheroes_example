@@ -1,6 +1,7 @@
 package com.github.aimanzaki.dotaheroes.data.remote
 
 import com.github.aimanzaki.dotaheroes.data.entities.Hero
+import com.github.aimanzaki.dotaheroes.data.entities.HeroMatchup
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -12,7 +13,7 @@ interface HeroService {
   @GET("heroes/{id}")
   suspend fun getHero(@Path("id") id:Int): Response<Hero>
 
-  //@GET("heroes/{id}/matchups")
-  //suspend fun getHeroMatchups(@Path("id") id:Int):Response
+  @GET("heroes/{id}/matchups")
+ suspend fun getHeroMatchups(@Path("id") id:Int):Response<List<HeroMatchup>>
 
 }

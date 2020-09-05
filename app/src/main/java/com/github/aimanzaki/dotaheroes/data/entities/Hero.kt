@@ -21,8 +21,8 @@ data class Hero (
 
 data class HeroMatchup (
   @PrimaryKey
-  val heroId: Int,
-  val rivalId: Int,
+  val hero_id: Int,
   val games_played:Int,
-  val wins:Int
+  val wins:Int,
+  var hero:Hero
 )

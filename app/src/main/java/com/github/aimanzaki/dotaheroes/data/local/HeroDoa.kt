@@ -16,6 +16,9 @@ interface HeroDao {
   @Query("SELECT * FROM heroes")
   fun getAllHeroes() : LiveData<List<Hero>>
 
+  @Query("SELECT * FROM heroes LIMIT 1")
+  fun getOneHero() :LiveData<List<Hero>>
+
   @Query("SELECT * FROM heroes WHERE id = :id")
   fun getHero(id:Int): LiveData<Hero>
 

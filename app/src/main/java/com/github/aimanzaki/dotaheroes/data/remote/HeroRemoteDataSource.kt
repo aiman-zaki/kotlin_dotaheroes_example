@@ -8,4 +8,5 @@ class HeroRemoteDataSource @Inject constructor(
 ):BaseDataSource(){
   suspend fun getHeroes() = getResult { heroService.getHeroes() }
   suspend fun getHero(id:Int) = getResult { heroService.getHero(id) }
+  suspend fun getHeroMatchups(id:Int) = getResult {  heroService.getHeroMatchups(id)}
 }

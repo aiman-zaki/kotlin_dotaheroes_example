@@ -13,7 +13,17 @@
     tools:layout="@layout/heroes_fragment">
     <action
       android:id="@+id/action_heroesFragment_to_heroMatchupFragment"
-      app:destination="@id/hero_matchup_fragment" />
+      app:destination="@id/hero_matchups_fragment" />
+
+  </fragment>
+
+  <fragment
+    android:id="@+id/hero_matchups_fragment"
+    android:name="com.github.aimanzaki.dotaheroes.ui.hero_matchups.HeroMatchupsFragment"
+    android:label="Hero Matchups"
+    tools:layout="@layout/heroes_matchups_fragment"
+    >
+
 
   </fragment>
 
