@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.github.aimanzaki.dotaheroes.data.entities.Hero
 
-@Database(entities = [Hero::class], version = 2 , exportSchema = false)
+@Database(entities = [Hero::class], version = 3 , exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
   abstract  fun heroDao(): HeroDao

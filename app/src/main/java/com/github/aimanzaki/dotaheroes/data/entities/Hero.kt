@@ -15,7 +15,10 @@ data class Hero (
   val localized_name:String,
   val primary_attr:String,
   val attack_type:String,
-  val roles:List<String>
+  val roles:List<String>,
+
+  var expanded:Boolean
+
 )
 
 

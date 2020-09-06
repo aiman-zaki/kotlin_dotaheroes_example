@@ -46,7 +46,7 @@ class HeroMatchupsFragment : Fragment(),HeroMatchupsAdapter.HeroMatchupsListener
 
   private fun bindRivalDetail(id:Int,index:Int){
     val data = viewModel.rivalDetail(id)
-    var hero = Hero(1,"","","","", listOf<String>())
+    var hero = Hero(1,"","","","", listOf<String>(),false)
     data.observe(viewLifecycleOwner,{
       when(it.status){
         Resource.Status.SUCCESS -> {
@@ -57,7 +57,7 @@ class HeroMatchupsFragment : Fragment(),HeroMatchupsAdapter.HeroMatchupsListener
           binding.progressBar.visibility = View.VISIBLE
         }
         Resource.Status.ERROR -> {
-          hero = Hero(1,"","","","", listOf())
+          hero = Hero(1,"","","","", listOf(),false)
         }
       }
       adapter.updateItem(index,hero)
@@ -75,7 +75,6 @@ class HeroMatchupsFragment : Fragment(),HeroMatchupsAdapter.HeroMatchupsListener
           }
         }
         Resource.Status.ERROR ->{
-          Log.d("DATA",it.message)
           Toast.makeText(activity, it.message, Toast.LENGTH_SHORT).show()
         }
         Resource.Status.LOADING -> {

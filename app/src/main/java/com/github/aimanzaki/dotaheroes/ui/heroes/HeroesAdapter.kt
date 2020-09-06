@@ -52,13 +52,17 @@ class HeroViewHolder(private val itemBinding: ItemHeroBinding, private val liste
     this.hero = item
     itemBinding.heroName.text = item.localized_name
     itemBinding.heroPrimaryAttribute.text = item.primary_attr
-    if(item.primary_attr == "agi"){
-      itemBinding.heroPrimaryAttribute.setTextColor(Color.GREEN)
-    } else if(item.primary_attr =="str"){
-      itemBinding.heroPrimaryAttribute.setTextColor(Color.RED)
-    } else {
-      itemBinding.heroPrimaryAttribute.setTextColor(Color.BLUE)
+    when (item.primary_attr) {
+        "agi" -> {
+          itemBinding.heroPrimaryAttribute.setTextColor(Color.GREEN)
+        }
+        "str" -> {
+          itemBinding.heroPrimaryAttribute.setTextColor(Color.RED)
+        }
+        else -> {
+          itemBinding.heroPrimaryAttribute.setTextColor(Color.BLUE)
 
+        }
     }
 
     val imageName = item.localized_name.replace(" ","_").replace("-","").toLowerCase(Locale.ENGLISH).replace("\\s".toRegex(), "")
@@ -70,9 +74,22 @@ class HeroViewHolder(private val itemBinding: ItemHeroBinding, private val liste
       .error(R.drawable.ic_launcher_foreground)
       .into(itemBinding.image)
 
+      itemBinding.matchupsButton.setOnClickListener(View.OnClickListener {
+        listener.onClickedHero(heroId = hero.id)
+      })
+      if(hero.expanded){
+        setVisibility(View.VISIBLE)
+      }
+
+  }
+
+  private fun setVisibility(v:Int){
+    itemBinding.expandable.visibility = v
   }
 
   override fun onClick(v:View?){
-    listener.onClickedHero(heroId = hero.id)
+    if (hero.expanded) setVisibility(View.GONE) else setVisibility(View.VISIBLE)
+    hero.expanded = !hero.expanded
+
   }
 }

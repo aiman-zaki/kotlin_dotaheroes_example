@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.github.aimanzaki.dotaheroes.R
 import com.github.aimanzaki.dotaheroes.databinding.HeroesFragmentBinding
 import com.github.aimanzaki.dotaheroes.utils.Resource
@@ -46,10 +47,10 @@ class HeroesFragment : Fragment(),HeroesAdapter.HeroItemListener{
     adapter = HeroesAdapter(this)
     binding.heroesRv.layoutManager = LinearLayoutManager(requireContext())
     binding.heroesRv.adapter = adapter
+    (binding.heroesRv.itemAnimator as SimpleItemAnimator).supportsChangeAnimations = false
   }
 
   private  fun setupObservers(){
-    Log.d("setupObservers","Entering")
     viewModel.heroes.observe(viewLifecycleOwner, Observer {
       when(it.status){
         Resource.Status.SUCCESS -> {
@@ -58,7 +59,6 @@ class HeroesFragment : Fragment(),HeroesAdapter.HeroItemListener{
         }
         Resource.Status.ERROR -> {
           Timber.e(it.message)
-          Log.d("Error",it.message)
           Toast.makeText(requireContext(),it.message,Toast.LENGTH_SHORT).show()
         }
         Resource.Status.LOADING -> binding.progressBar.visibility = View.VISIBLE
@@ -71,5 +71,6 @@ class HeroesFragment : Fragment(),HeroesAdapter.HeroItemListener{
       R.id.action_heroesFragment_to_heroMatchupFragment,
       bundleOf("id" to heroId)
     )
+
   }
 }

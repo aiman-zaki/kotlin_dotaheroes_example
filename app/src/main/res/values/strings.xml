@@ -2,4 +2,6 @@
   <string name="app_name">DotaHeroes</string>
   <string name="total_games">Total Games</string>
   <string name="win_lose">Win/Lose</string>
+  <string name="matchups">Matchups</string>
+
 </resources>
