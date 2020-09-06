@@ -64,14 +64,16 @@ class HeroMatchupsViewHolder(private val itemBinding: ItemHeroMatchupBinding, pr
     itemBinding.matchesWin.text = item.wins.toString()
     itemBinding.matchLose.text = (item.games_played - item.wins).toString()
 
-    val imageName = item.hero.localized_name.replace(" ","_").replace("-","").toLowerCase(Locale.ENGLISH).replace("\\s".toRegex(), "")
+    if(item.hero != null){
+      val imageName = item.hero.localized_name.replace(" ","_").replace("-","").toLowerCase(Locale.ENGLISH).replace("\\s".toRegex(), "")
 
-    Glide.with(itemBinding.root).
-    load("https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/"+imageName+"_full.png").
-    transform(CircleCrop())
-      .placeholder(R.drawable.ic_launcher_background)
-      .error(R.drawable.ic_launcher_foreground)
-      .into(itemBinding.image)
+      Glide.with(itemBinding.root).
+      load("https://cdn.cloudflare.steamstatic.com/apps/dota2/images/heroes/"+imageName+"_full.png").
+      transform(CircleCrop())
+        .placeholder(R.drawable.ic_launcher_background)
+        .error(R.drawable.ic_launcher_foreground)
+        .into(itemBinding.image)
+    }
   }
 
   override fun onClick(v:View?){
