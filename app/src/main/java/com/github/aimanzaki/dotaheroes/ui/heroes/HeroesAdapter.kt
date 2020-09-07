@@ -51,19 +51,20 @@ class HeroViewHolder(private val itemBinding: ItemHeroBinding, private val liste
   fun bind(item:Hero){
     this.hero = item
     itemBinding.heroName.text = item.localized_name
-    itemBinding.heroPrimaryAttribute.text = item.primary_attr
-    when (item.primary_attr) {
+    var attrHref = ""
+    attrHref = when (item.primary_attr) {
         "agi" -> {
-          itemBinding.heroPrimaryAttribute.setTextColor(Color.GREEN)
+          "https://static.wikia.nocookie.net/dota2_gamepedia/images/2/2d/Agility_attribute_symbol.png/revision/latest?cb=20180323111718"
         }
         "str" -> {
-          itemBinding.heroPrimaryAttribute.setTextColor(Color.RED)
+          "https://static.wikia.nocookie.net/dota2_gamepedia/images/7/7a/Strength_attribute_symbol.png/revision/latest?cb=20180323111830"
         }
         else -> {
-          itemBinding.heroPrimaryAttribute.setTextColor(Color.BLUE)
+          "https://static.wikia.nocookie.net/dota2_gamepedia/images/5/56/Intelligence_attribute_symbol.png/revision/latest?cb=20180323111754"
 
         }
     }
+    Glide.with(itemBinding.root).load(attrHref).into(itemBinding.attr)
 
     val imageName = item.localized_name.replace(" ","_").replace("-","").toLowerCase(Locale.ENGLISH).replace("\\s".toRegex(), "")
 
